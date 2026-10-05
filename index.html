@@ -1,92 +1,181 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Happy Teachers' Day, Ma'am Kainaat</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff4f8;--ink:#3b1636;--soft:#7a4a6e;--card:#fff;--rose:#e58fae;--line:#f2cfdd}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 Nunito,sans-serif}
-.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;position:relative}
-.hero h1{font:600 70px/1 Cormorant Garamond,serif;margin:0}
-.hero .to{font:italic 500 32px Cormorant Garamond,serif;color:var(--rose)}
-.petal{position:absolute;top:-20px;animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(100vh) rotate(300deg)}}
-main{max-width:640px;margin:0 auto;padding:0 20px 60px}
-.letter{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px}
-.letter p{opacity:0;transform:translateY(10px);transition:1s}.letter p.in{opacity:1;transform:none}
-.vid{display:flex;width:100%;margin:30px 0;border:0;border-radius:20px;background:linear-gradient(135deg,#5a2352,#b4507f);color:#fff;padding:20px;gap:15px;cursor:pointer}
-.play{width:60px;height:60px;border-radius:50%;background:#fff;display:grid;place-items:center}
-.play:after{content:"";border-left:18px solid #b4507f;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;z-index:10}
+:root{--bg:#fff4f8;--ink:#3b1636;--soft:#7a4a6e;--card:#ffffff;--rose:#e58fae;--gold:#c98f2b;--sage:#8fb08a;--line:#f2cfdd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d0f1b;--ink:#fbe8f1;--soft:#d2a9c3;--card:#2b1727;--line:#4a2a43}}
+:root[data-theme="dark"]{--bg:#1d0f1b;--ink:#fbe8f1;--soft:#d2a9c3;--card:#2b1727;--line:#4a2a43}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 Nunito,system-ui,sans-serif;overflow-x:hidden}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 22px;position:relative}
+.hero h1{font:600 clamp(46px,12vw,96px)/1 "Cormorant Garamond",Georgia,serif;margin:0 0 14px;letter-spacing:-.5px}
+.hero .to{font:italic 500 clamp(26px,6vw,38px) "Cormorant Garamond",Georgia,serif;color:var(--rose);margin:0}
+.hero p.sub{color:var(--soft);max-width:30ch;margin:18px 0 0}
+.petal{position:absolute;top:-30px;font-size:22px;opacity:.85;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(105vh) rotate(300deg)}}
+.hero .hint{position:absolute;bottom:18px;color:var(--soft);font-size:14px}
+main{max-width:640px;margin:0 auto;padding:0 20px 70px}
+.letter{background:var(--card);border:1px solid var(--line);border-radius:26px 26px 26px 6px;padding:30px 24px;box-shadow:0 18px 40px -22px var(--rose)}
+.letter p{margin:0 0 16px}
+.letter .big{font:600 28px/1.25 "Cormorant Garamond",Georgia,serif;color:var(--rose)}
+.letter .sign{font:italic 500 25px/1.3 "Cormorant Garamond",Georgia,serif;text-align:right;margin:22px 0 0}
+.vid{display:block;width:100%;margin:34px 0 0;border:0;border-radius:20px;background:linear-gradient(135deg,#5a2352,#b4507f);color:#fff;padding:26px 20px;font:inherit;cursor:pointer;text-align:left;display:flex;gap:18px;align-items:center}
+.vid:focus-visible,.x:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.play{flex:none;width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.play:after{content:"";border-left:20px solid #b4507f;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}
+.vid b{display:block;font:600 24px/1.2 "Cormorant Garamond",Georgia,serif}
+.vid span{font-size:14px;opacity:.9}
+.modal{position:fixed;inset:0;background:rgba(20,6,18,.88);display:none;place-items:center;z-index:9;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
 .modal.on{display:grid}
-.player{width:300px;height:500px;background:linear-gradient(160deg,#5a2352,#b4507f);border-radius:20px;position:relative;color:#fff;display:grid;place-items:center;text-align:center;padding:20px}
-.bar{position:absolute;top:10px;left:10px;right:10px;height:3px;background:rgba(255,255,255,.3)}
-.bar i{display:block;height:100%;width:0;background:#fff;transition:.3s}
-.end{position:absolute;inset:0;display:none;place-items:center;background:linear-gradient(160deg,#5a2352,#b4507f)}
-.end.on{display:grid}
-.x{position:fixed;top:15px;right:15px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;font-size:20px;z-index:20}
+.player{width:min(92vw,330px);aspect-ratio:9/16;max-height:88vh;background:#1d0f1b;border-radius:26px;overflow:hidden;position:relative;color:#fff}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:top;transform:scale(1.02)}
+.slide.on img{animation:pan 1.6s ease-in-out forwards}
+@keyframes pan{from{object-position:50% 0;transform:scale(1.02)}to{object-position:50% 100%;transform:scale(1.12)}}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:60px 18px 22px;background:linear-gradient(transparent,rgba(20,6,18,.92));font:italic 500 22px/1.3 "Cormorant Garamond",Georgia,serif;text-align:center}
+.bar{position:absolute;top:10px;left:12px;right:12px;height:3px;background:rgba(255,255,255,.3);border-radius:3px;z-index:2}
+.bar i{display:block;height:100%;width:0;background:#fff;border-radius:3px}
+.end{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;background:linear-gradient(160deg,#5a2352,#b4507f);z-index:3}
+.end.on{display:flex}
+.end h3{font:600 36px/1.1 "Cormorant Garamond",Georgia,serif;margin:0 0 10px}
+.end button{margin-top:18px;border:1px solid #fff;background:transparent;color:#fff;border-radius:99px;padding:8px 22px;font:inherit;cursor:pointer}
+.x{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#3b1636;font-size:22px;cursor:pointer;z-index:10}
+@media (prefers-reduced-motion:reduce){.petal{display:none}.slide.on img{animation:none}}
+
 body.locked header,body.locked main{display:none}
-#gate{position:fixed;inset:0;z-index:30;display:grid;place-items:center;text-align:center;padding:20px;background:radial-gradient(circle,#7a2f6a,#2a0f27);color:#fff;transition:.8s}
-#gate.out{opacity:0;transform:scale(1.2);pointer-events:none}
-#gate .face{width:140px;height:140px;border-radius:50%;border:4px solid #fff}
-#pw{width:180px;text-align:center;font-size:26px;letter-spacing:10px;padding:8px;border-radius:10px;border:2px solid #fff;background:rgba(255,255,255,.1);color:#fff}
-#go{margin:15px auto 0;display:block;border:0;border-radius:99px;background:#fff;color:#5a2352;padding:10px 30px;font-weight:600}
-.gifts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:15px}
-.g{width:70px;height:70px;font-size:38px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
-.msg{min-height:40px;margin-top:10px;color:var(--rose);font-style:italic;text-align:center}
+#gate{position:fixed;inset:0;z-index:30;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 20%,#7a2f6a,#2a0f27);color:#fff;transition:opacity .9s,transform .9s}
+#gate.out{opacity:0;transform:scale(1.15);pointer-events:none}
+#gate .face{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 35%;border:4px solid #fff;box-shadow:0 0 0 8px rgba(255,255,255,.18);animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 18px rgba(255,255,255,.08)}}
+#gate h2{font:600 34px/1.15 "Cormorant Garamond",Georgia,serif;margin:22px 0 6px}
+#gate p{margin:0 0 18px;opacity:.85}
+#pw{width:190px;text-align:center;font:600 28px Nunito,sans-serif;letter-spacing:12px;padding:10px 10px 10px 22px;border-radius:14px;border:2px solid #fff;background:rgba(255,255,255,.1);color:#fff}
+#pw:focus-visible,#go:focus-visible,.g:focus-visible,.bl:focus-visible,#bird:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+#go{display:block;margin:16px auto 0;border:0;border-radius:99px;background:#fff;color:#5a2352;font:600 17px Nunito,sans-serif;padding:11px 34px;cursor:pointer}
+#err{min-height:24px;margin-top:10px;color:#ffd0df}
+.shake{animation:sh .45s}@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.fx{position:fixed;z-index:50;pointer-events:none;font-size:24px;animation:fx 1.3s ease-out forwards}
+@keyframes fx{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(.6);opacity:0}}
+section.box{margin-top:44px;text-align:center}
+section.box h2{font:600 34px/1.15 "Cormorant Garamond",Georgia,serif;margin:0 0 6px}
+section.box>p{color:var(--soft);margin:0 0 18px}
+.msg{min-height:56px;margin-top:14px;font:italic 500 22px/1.4 "Cormorant Garamond",Georgia,serif;color:var(--rose)}
+.gifts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.g{width:74px;height:74px;font-size:42px;border:1px solid var(--line);border-radius:20px;background:var(--card);cursor:pointer;transition:transform .2s}
+.g:active{transform:scale(.88)}.g.open{animation:pop .6s}
+@keyframes pop{40%{transform:scale(1.3) rotate(-10deg)}}
+#bird{font-size:84px;background:none;border:0;cursor:pointer;line-height:1}
+#bird.hop{animation:hop .5s}@keyframes hop{40%{transform:translateY(-26px) rotate(-8deg)}}
+.sky{position:relative;height:300px;border-radius:24px;background:linear-gradient(#ffd9e8,#fff4f8);border:1px solid var(--line);overflow:hidden}
+:root[data-theme="dark"] .sky{background:linear-gradient(#4a2a43,#2b1727)}
+.bl{position:absolute;bottom:-70px;font-size:56px;background:none;border:0;cursor:pointer;animation:up linear infinite}
+@keyframes up{to{bottom:310px}}
+.pic{width:170px;height:170px;border-radius:50%;object-fit:cover;object-position:50% 35%;border:4px solid var(--rose);margin-bottom:12px}
+.close{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px 22px;margin-top:40px;text-align:center;box-shadow:0 18px 40px -22px var(--rose)}
+.close p{margin:0 0 14px}
+.letter p{opacity:0;transform:translateY(14px);transition:opacity 1s,transform 1s}.letter p.in{opacity:1;transform:none}
+#hc{touch-action:none;width:300px;max-width:100%;cursor:crosshair}
+.beat{animation:beat 1.3s ease-in-out infinite}@keyframes beat{50%{transform:scale(1.07)}}
+#hk{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;background:radial-gradient(circle,#7a2f6a,#2a0f27);color:#fff}
+#hk.on{display:flex}#hk .hk{font:600 clamp(70px,22vw,120px)/1 "Cormorant Garamond",Georgia,serif}
+#hk h3{font:italic 500 28px/1.3 "Cormorant Garamond",Georgia,serif;margin:14px 0 6px}#hk small{opacity:.7}
 </style></head><body class="locked">
-<div id="gate"><div>
-<img class="face" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face">
-<h2>For My Favourite Teacher</h2>
-<p>Enter code to open 💌</p>
-<input id="pw" placeholder="••••"><button id="go">Open Gift 🎁</button>
-<div id="err" style="min-height:20px;color:#ffd0df;margin-top:8px"></div>
-<p style="font-size:12px;opacity:.7">Hint: 1411</p>
-</div></div>
-
-<header class="hero"><h1>Happy<br>Teachers' Day</h1><p class="to">To Ma'am Kainaat</p><p style="color:var(--soft)">You made us believe we could.</p></header>
-
+<div id="gate"><div><img class="face" alt="Ma'am Kainaat" src="maam.jpg"><h2>Ma'am Kainaat ke liye 🌷</h2><p>Ek chhota sa surprise aap ka intezar kar raha hai.<br>Password dalein 🔒</p>
+<input id="pw" type="password" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="Password"><button id="go">Open</button><div id="err"></div></div></div>
+<header class="hero">
+<span class="petal" style="left:8%;animation-duration:11s">🌷</span><span class="petal" style="left:30%;animation-duration:14s;animation-delay:-5s">🌸</span><span class="petal" style="left:58%;animation-duration:12s;animation-delay:-2s">🌷</span><span class="petal" style="left:84%;animation-duration:15s;animation-delay:-8s">🌸</span>
+<p class="to">For my dear Ma'am Kainaat</p>
+<h1>Happy Teachers' Day</h1>
+<p class="sub">A little letter from a student who never forgot you.</p>
+<span class="hint">scroll down ↓</span>
+</header>
 <main>
-<div class="letter">
-<p style="font:600 26px Cormorant Garamond,serif;color:var(--rose)">Dear Ma'am Kainaat,</p>
-<p>Thank you for everything you have done.</p>
-<p>Your patience and kindness has always inspired me.</p>
-<p>You taught us not just subjects, but how to be confident.</p>
-<p style="text-align:right;font-style:italic">— Ume Habiba 🌸</p>
-</div>
-<button class="vid" id="openVid"><span class="play"></span><span><b>Tap to watch surprise</b></span></button>
-<div class="gifts">
-<button class="g" data-m="You are the reason I love learning! 📚">📚</button>
-<button class="g" data-m="Thank you for being so patient! 🌷">🌷</button>
-<button class="g" data-m="Best teacher award goes to YOU! 🏆">🏆</button>
-<button class="g" data-m="You deserve all the love! 💖">💖</button>
-</div>
-<div class="msg" id="giftMsg"></div>
+<article class="letter">
+<p class="big">🌷 Happy Teachers' Day, my dear Ma'am! 🌷</p>
+<p>It has been quite a long time since I left school, but some teachers and some memories are so special that they never truly leave your heart, no matter how much time passes. ❤️</p>
+<p>I joined school in 7th grade and spent my journey from 7th to 10th grade with all of you. That time has passed, and life has now entered a new phase, but whenever I remember my school days, you are always a part of those beautiful memories because you are special to me. ❤️</p>
+<p>You used to call me “Angry Bird.” 😂 At that time, I probably used to make faces whenever you said that. 😂 But now, when I look back, these little moments have become some of my sweetest memories. 🥹❤️</p>
+<p>And honestly, you were the one and only teacher in the whole school whom I was actually scared of. 😂❤️ And when you were angry with me, it was honestly worse than anything! 😂 I swear, I could not feel normal in school until I talked to you and somehow made things right between us. And if you ever took a day off… oh God! 😂 I cannot even explain how terribly that day would go for me. It genuinely felt like my whole world had come to an end. 😭😂❤️</p>
+<p>Your scolding, your advice, your jokes, and the way you cared about your students—at that time, these things may have seemed normal, but now that I am far away from school, I realize how special those moments really were.</p>
+<p>You did not just teach me; you also became a part of one of the most beautiful chapters of my life. The education, advice, and memories I received from you will always have a special place in my heart. ❤️</p>
+<p><b>Happy Teachers' Day, Ma'am! 🌹</b><br>May Allah always keep you happy, healthy, and successful. Ameen. ❤️</p>
+<p>With lots of respect and beautiful memories,</p>
+<p class="sign">From: Um-e-Habiba 🌷</p>
+</article>
+<section class="box"><h2>Gifts for you 🎁</h2><p>Har gift ko tap karein</p><div class="gifts" id="gifts"></div><div class="msg" id="gm"></div></section>
+<section class="box"><h2>Angry Bird 🐦</h2><p>Aap mujhe yehi bulati thin. Ab main aap ko manati hoon.</p><button id="bird" aria-label="Angry Bird">🐦</button><div class="msg" id="bm">Hmph! 😡</div></section>
+<section class="box"><h2>Balloons 🎈</h2><p>Sab balloons phod dein</p><div class="sky" id="sky"></div><div class="msg" id="sm"></div></section>
+<section class="box"><h2 id="ht">Please complete this heart</h2><p>Adha dil bana hua hai. Ungli se baqi adha poora karein.</p><canvas id="hc" width="300" height="270" aria-label="Heart drawing area"></canvas><div class="msg" id="hm"></div></section>
+<button class="vid" id="open" aria-label="Play video of our chats"><span class="play"></span><span><b>Our chats, our memories</b><span>Tap to play a little video</span></span></button>
+
+<article class="close"><img class="pic" alt="Ma'am Kainaat" src="maam.jpg">
+<p class="big" style="font:600 30px/1.2 'Cormorant Garamond',Georgia,serif;color:var(--rose)">Ma'am Kainaat 🌷</p>
+<p>Duniya mein bohat si teachers hoti hain, lekin kuch teachers dil mein apni alag jagah bana leti hain. Aap meri liye wohi bohat special teacher thin. Mujhe aap bohat pasand hain, aur aap ko yaad karke mera dil khush ho jata hai.</p>
+<p>Aap ki daant, aap ki baatein aur aap ka pyar, sab meri zindagi ki sab se khoobsurat yaadon mein hain. Allah aap ko hamesha khush, healthy aur kamyab rakhe. Ameen. 🤲</p>
+<p class="sign" style="font:italic 500 25px 'Cormorant Garamond',Georgia,serif;text-align:right">From Um-e-Habiba, the one student who loves you the most ❤️</p><p style="font:600 26px/1.3 'Cormorant Garamond',Georgia,serif;margin-top:22px;color:var(--rose)">Thank you, thank you, thank you! 😘</p><button id="fin" style="margin-top:8px;border:0;border-radius:99px;background:linear-gradient(135deg,#5a2352,#b4507f);color:#fff;font:600 16px Nunito,sans-serif;padding:12px 26px;cursor:pointer">One last surprise 🎆</button></article>
 </main>
-
-<div class="modal" id="modal">
-<button class="x" id="closeM">✕</button>
-<div class="player"><div class="bar"><i id="bar"></i></div>
-<div class="slide">Dear Ma'am, this is for you... 🌸</div>
-<div class="slide" style="display:none">Thank you for your love ✨</div>
-<div class="slide" style="display:none">Happy Teachers' Day! — Ume Habiba 💖</div>
-<div class="end" id="end"><div><h3>Happy Teachers' Day</h3><p>Ma'am Kainaat 💖</p><button id="replay" style="border:1px solid #fff;background:none;color:#fff;border-radius:99px;padding:6px 20px">Replay</button></div></div>
-</div></div>
-
+<div class="modal" id="m"><button class="x" id="close" aria-label="Close video">✕</button>
+<div class="player" id="p"><div class="bar"><i id="pr"></i></div><div id="sl"></div><div class="cap" id="cap"></div>
+<div class="end" id="end"><h3>Thank you, Ma'am 🌷</h3><p>For every lesson, every scolding and every memory.</p><button id="again">Watch again</button></div></div></div>
+<div id="hk"><div class="hk beat">H 💖 K</div><h3>Happy Teachers' Day, Ma'am Kainaat</h3><small>Tap anywhere to close</small></div>
 <script>
-const gate=document.getElementById('gate'),pw=document.getElementById('pw'),go=document.getElementById('go');
-function unlock(){gate.classList.add('out');document.body.classList.remove('locked');setTimeout(()=>gate.style.display='none',800)}
-go.onclick=()=>{unlock()};pw.onkeydown=e=>{if(e.key==='Enter')unlock()}
-const hero=document.querySelector('.hero');
-for(let i=0;i<16;i++){let s=document.createElement('span');s.className='petal';s.textContent=['🌸','💖','✨','🌷'][i%4];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(5+Math.random()*5)+'s';hero.appendChild(s)}
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})});
-document.querySelectorAll('.letter p').forEach(p=>obs.observe(p));
-document.querySelectorAll('.g').forEach(b=>{b.onclick=()=>{document.getElementById('giftMsg').textContent=b.dataset.m}})
-const modal=document.getElementById('modal'),slides=[...document.querySelectorAll('.slide')],bar=document.getElementById('bar'),end=document.getElementById('end');
-let idx=0,timer;
-document.getElementById('openVid').onclick=()=>{modal.classList.add('on');idx=0;show();timer=setInterval(()=>{idx++;if(idx>=3){clearInterval(timer);end.classList.add('on');bar.style.width='100%'}else show()},2000)}
-function show(){slides.forEach((s,i)=>s.style.display=i==idx?'block':'none');bar.style.width=((idx+1)/3*100)+'%'}
-document.getElementById('closeM').onclick=()=>{modal.classList.remove('on');clearInterval(timer);end.classList.remove('on');bar.style.width='0%'}
-document.getElementById('replay').onclick=()=>{end.classList.remove('on');idx=0;show();timer=setInterval(()=>{idx++;if(idx>=3){clearInterval(timer);end.classList.add('on')}else show()},2000)}
-</script>
-</body></html>
+const F=["chat01.jpg", "chat02.jpg", "chat03.jpg", "chat04.jpg", "chat05.jpg", "chat06.jpg", "chat07.jpg", "chat08.jpg", "chat09.jpg", "chat10.jpg", "chat11.jpg", "chat12.jpg", "chat13.jpg", "chat14.jpg", "chat15.jpg", "chat16.jpg", "chat17.jpg"];
+const caps=["Where it all began…","Little talks, big memories","Your advice, always","Laughing together","Never forgotten ❤️"];
+const sl=document.getElementById('sl'),cap=document.getElementById('cap'),pr=document.getElementById('pr'),m=document.getElementById('m'),end=document.getElementById('end');
+F.forEach(s=>{const d=document.createElement('div');d.className='slide';d.innerHTML='<img alt="Blurred chat">';d.firstChild.src=s;sl.appendChild(d)});
+let i=0,t=null,T=1600;
+function show(){const s=sl.children;[...s].forEach(x=>x.classList.remove('on'));
+ if(i>=s.length){end.classList.add('on');cap.textContent='';pr.style.width='100%';return}
+ const el=s[i];el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+ cap.textContent=caps[Math.floor(i*caps.length/s.length)];pr.style.width=((i+1)/s.length*100)+'%';
+ t=setTimeout(()=>{i++;show()},T)}
+function start(){clearTimeout(t);end.classList.remove('on');i=0;pr.style.width='0';show()}
+document.getElementById('open').onclick=()=>{m.classList.add('on');start()};
+document.getElementById('again').onclick=start;
+function stop(){clearTimeout(t);m.classList.remove('on')}
+document.getElementById('close').onclick=stop;
+m.addEventListener('click',e=>{if(e.target===m)stop()});
+addEventListener('keydown',e=>{if(e.key==='Escape')stop()});
+
+function burst(x,y,l,n){for(let k=0;k<n;k++){const s=document.createElement('span');s.className='fx';s.textContent=l[Math.floor(Math.random()*l.length)];
+s.style.left=x+'px';s.style.top=y+'px';const a=Math.random()*6.28,d=60+Math.random()*110;
+s.style.setProperty('--dx',Math.cos(a)*d+'px');s.style.setProperty('--dy',(Math.sin(a)*d-70)+'px');s.style.setProperty('--r',(Math.random()*360-180)+'deg');
+document.body.appendChild(s);setTimeout(()=>s.remove(),1400)}}
+const FL=['🌷','🌸','🌹','🌺','💖','✨'];
+addEventListener('pointerdown',e=>{if(e.target.closest('#pw,#fin,#hk,#hc'))return;burst(e.clientX,e.clientY,FL,7)});
+const gate=document.getElementById('gate'),pw=document.getElementById('pw'),err=document.getElementById('err');
+function unlock(){if(pw.value==='1234'){burst(innerWidth/2,innerHeight/2,FL,28);gate.classList.add('out');document.body.classList.remove('locked');scrollTo(0,0);setTimeout(()=>gate.remove(),1000)}
+else{err.textContent='Galat password, dobara try karein';pw.classList.remove('shake');void pw.offsetWidth;pw.classList.add('shake');pw.value=''}}
+document.getElementById('go').onclick=unlock;pw.addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.6});
+document.querySelectorAll('.letter p').forEach(p=>io.observe(p));
+const GM=["Aap ki muskurahat 😊","Aap ki dant mein bhi pyar tha 🌷","Aap ki sikhai hui baatein ✨","Aap ke saath guzra har din 📖","Meri dua: Allah aap ko hamesha khush rakhe 🤲"];
+const gw=document.getElementById('gifts'),gm=document.getElementById('gm');
+GM.forEach((m,i)=>{const b=document.createElement('button');b.className='g';b.textContent='🎁';b.setAttribute('aria-label','Gift '+(i+1));
+b.onclick=e=>{b.textContent=['💐','🧸','🍫','🎀','💌'][i];b.classList.add('open');gm.textContent=m;const r=b.getBoundingClientRect();burst(r.left+37,r.top+30,['🎉','💖','✨','🌸'],10)};gw.appendChild(b)});
+const BM=["Hmph! 😡","Abhi bhi naraz hoon… 😠","Thoda thoda kam ho raha hai… 😤","Acha acha, maaf kiya 🙂","Ab gussa khatam! 🥰 Aap ki Angry Bird aap se bohat pyar karti hai ❤️"];
+let bn=0;const bird=document.getElementById('bird'),bm=document.getElementById('bm');
+bird.onclick=()=>{bn=Math.min(bn+1,4);bm.textContent=BM[bn];bird.textContent=bn==4?'🕊️':'🐦';bird.classList.remove('hop');void bird.offsetWidth;bird.classList.add('hop')};
+const sky=document.getElementById('sky'),sm=document.getElementById('sm');
+const W=["Thank you 💖","Jazakallah 🤲","Respect 🙏","Best Teacher 🌟","Shukriya ✨","Love you Ma'am ❤️","Sab se special 🌷","Miss you 🥹"];
+let left=W.length;
+W.forEach((w,i)=>{const b=document.createElement('button');b.className='bl';b.textContent=['🎈','🎈','🎈','🎈'][0];
+b.style.left=(4+i*11.5)+'%';b.style.animationDuration=(9+i*1.3)+'s';b.style.animationDelay=(-i*2.7)+'s';b.style.filter='hue-rotate('+(i*45)+'deg)';b.setAttribute('aria-label','Balloon');
+b.onclick=e=>{e.stopPropagation();const r=b.getBoundingClientRect();burst(r.left+28,r.top+28,['🎊','✨','💖'],12);sm.textContent=w;b.remove();if(--left==0)setTimeout(()=>sm.textContent='Sab balloons phod diye! Aap sab se pyari teacher hain 🎉',1200)};sky.appendChild(b)});
+const fin=document.getElementById('fin');
+const hk=document.getElementById('hk');let hid;
+fin.onclick=()=>{hk.classList.add('on');let n=0;clearInterval(hid);hid=setInterval(()=>{burst(Math.random()*innerWidth,innerHeight*(.2+Math.random()*.6),['H','K','💖','💞','✨'],8);if(++n>45)clearInterval(hid)},140)};
+hk.onclick=()=>{hk.classList.remove('on');clearInterval(hid)};
+const hc=document.getElementById('hc'),g=hc.getContext('2d'),S=8.5,CX=150,CY=110;
+function pt(a){return[CX+S*16*Math.pow(Math.sin(a),3),CY-S*(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))]}
+function half(a,b,fill,dash){g.beginPath();for(let k=0;k<=60;k++){const[x,y]=pt(a+(b-a)*k/60);k?g.lineTo(x,y):g.moveTo(x,y)}
+if(fill){g.closePath();g.fillStyle='rgba(229,143,174,.45)';g.fill()}g.setLineDash(dash?[7,7]:[]);g.lineWidth=5;g.strokeStyle=dash?'rgba(229,143,174,.75)':'#e58fae';g.stroke();g.setLineDash([])}
+function letter(c,x,y){g.font='600 74px "Cormorant Garamond",Georgia,serif';g.textAlign='center';g.lineWidth=5;g.strokeStyle='#5a2352';g.strokeText(c,x,y);g.fillStyle='#fff';g.fillText(c,x,y)}
+function base(){g.clearRect(0,0,300,270);half(Math.PI,2*Math.PI,true,false);half(0,Math.PI,false,true);letter('H',CX-62,CY+30)}
+base();document.fonts&&document.fonts.ready.then(base);
+let pts=[],dr=false,done=false,len=0,lp;
+const pos=e=>{const r=hc.getBoundingClientRect()
