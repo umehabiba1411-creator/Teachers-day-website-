@@ -1,88 +1,92 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Happy Teachers' Day, Ma'am Kainaat</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff4f8;--ink:#3b1636;--soft:#7a4a6e;--card:#ffffff;--rose:#e58fae;--gold:#c98f2b;--sage:#8fb08a;--line:#f2cfdd;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d0f1b;--ink:#fbe8f1;--soft:#d2a9c3;--card:#2b1727;--line:#4a2a43}}
-:root[data-theme="dark"]{--bg:#1d0f1b;--ink:#fbe8f1;--soft:#d2a9c3;--card:#2b1727;--line:#4a2a43}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 Nunito,system-ui,sans-serif;overflow-x:hidden}
-.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 22px;position:relative}
-.hero h1{font:600 clamp(46px,12vw,96px)/1 "Cormorant Garamond",Georgia,serif;margin:0 0 14px;letter-spacing:-.5px}
-  
-.hero .to{font:italic 500 clamp(26px,6vw,38px) "Cormorant Garamond",Georgia,serif;color:var(--rose);margin:0}
-.hero p.sub{color:var(--soft);max-width:30ch;margin:18px 0 0}
-.petal{position:absolute;top:-30px;font-size:22px;opacity:.85;animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(105vh) rotate(300deg)}}
-.hero .hint{position:absolute;bottom:18px;color:var(--soft);font-size:14px}
-main{max-width:640px;margin:0 auto;padding:0 20px 70px}
-.letter{background:var(--card);border:1px solid var(--line);border-radius:26px 26px 26px 6px;padding:30px 24px;box-shadow:0 18px 40px -22px var(--rose)}
-.letter p{margin:0 0 16px}
-.letter .big{font:600 28px/1.25 "Cormorant Garamond",Georgia,serif;color:var(--rose)}
-.letter .sign{font:italic 500 25px/1.3 "Cormorant Garamond",Georgia,serif;text-align:right;margin:22px 0 0}
-.vid{display:block;width:100%;margin:34px 0 0;border:0;border-radius:20px;background:linear-gradient(135deg,#5a2352,#b4507f);color:#fff;padding:26px 20px;font:inherit;cursor:pointer;text-align:left;display:flex;gap:18px;align-items:center}
-.vid:focus-visible,.x:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.play{flex:none;width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center}
-.play:after{content:"";border-left:20px solid #b4507f;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}
-.vid b{display:block;font:600 24px/1.2 "Cormorant Garamond",Georgia,serif}
-.vid span{font-size:14px;opacity:.9}
-.modal{position:fixed;inset:0;background:rgba(20,6,18,.88);display:none;place-items:center;z-index:9;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+:root{--bg:#fff4f8;--ink:#3b1636;--soft:#7a4a6e;--card:#fff;--rose:#e58fae;--line:#f2cfdd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 Nunito,sans-serif}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 20px;position:relative}
+.hero h1{font:600 70px/1 Cormorant Garamond,serif;margin:0}
+.hero .to{font:italic 500 32px Cormorant Garamond,serif;color:var(--rose)}
+.petal{position:absolute;top:-20px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(100vh) rotate(300deg)}}
+main{max-width:640px;margin:0 auto;padding:0 20px 60px}
+.letter{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px}
+.letter p{opacity:0;transform:translateY(10px);transition:1s}.letter p.in{opacity:1;transform:none}
+.vid{display:flex;width:100%;margin:30px 0;border:0;border-radius:20px;background:linear-gradient(135deg,#5a2352,#b4507f);color:#fff;padding:20px;gap:15px;cursor:pointer}
+.play{width:60px;height:60px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.play:after{content:"";border-left:18px solid #b4507f;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;z-index:10}
 .modal.on{display:grid}
-.player{width:min(92vw,330px);aspect-ratio:9/16;max-height:88vh;background:#1d0f1b;border-radius:26px;overflow:hidden;position:relative;color:#fff}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s}
-.slide.on{opacity:1}
-.slide img{width:100%;height:100%;object-fit:cover;object-position:top;transform:scale(1.02)}
-.slide.on img{animation:pan 1.6s ease-in-out forwards}
-@keyframes pan{from{object-position:50% 0;transform:scale(1.02)}to{object-position:50% 100%;transform:scale(1.12)}}
-.cap{position:absolute;left:0;right:0;bottom:0;padding:60px 18px 22px;background:linear-gradient(transparent,rgba(20,6,18,.92));font:italic 500 22px/1.3 "Cormorant Garamond",Georgia,serif;text-align:center}
-.bar{position:absolute;top:10px;left:12px;right:12px;height:3px;background:rgba(255,255,255,.3);border-radius:3px;z-index:2}
-.bar i{display:block;height:100%;width:0;background:#fff;border-radius:3px}
-.end{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;background:linear-gradient(160deg,#5a2352,#b4507f);z-index:3}
-.end.on{display:flex}
-.end h3{font:600 36px/1.1 "Cormorant Garamond",Georgia,serif;margin:0 0 10px}
-.end button{margin-top:18px;border:1px solid #fff;background:transparent;color:#fff;border-radius:99px;padding:8px 22px;font:inherit;cursor:pointer}
-.x{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#3b1636;font-size:22px;cursor:pointer;z-index:10}
-@media (prefers-reduced-motion:reduce){.petal{display:none}.slide.on img{animation:none}}
-
+.player{width:300px;height:500px;background:linear-gradient(160deg,#5a2352,#b4507f);border-radius:20px;position:relative;color:#fff;display:grid;place-items:center;text-align:center;padding:20px}
+.bar{position:absolute;top:10px;left:10px;right:10px;height:3px;background:rgba(255,255,255,.3)}
+.bar i{display:block;height:100%;width:0;background:#fff;transition:.3s}
+.end{position:absolute;inset:0;display:none;place-items:center;background:linear-gradient(160deg,#5a2352,#b4507f)}
+.end.on{display:grid}
+.x{position:fixed;top:15px;right:15px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;font-size:20px;z-index:20}
 body.locked header,body.locked main{display:none}
-#gate{position:fixed;inset:0;z-index:30;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 20%,#7a2f6a,#2a0f27);color:#fff;transition:opacity .9s,transform .9s}
-#gate.out{opacity:0;transform:scale(1.15);pointer-events:none}
-#gate .face{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 35%;border:4px solid #fff;box-shadow:0 0 0 8px rgba(255,255,255,.18);animation:glow 3s ease-in-out infinite}
-@keyframes glow{50%{box-shadow:0 0 0 18px rgba(255,255,255,.08)}}
-#gate h2{font:600 34px/1.15 "Cormorant Garamond",Georgia,serif;margin:22px 0 6px}
-#gate p{margin:0 0 18px;opacity:.85}
-#pw{width:190px;text-align:center;font:600 28px Nunito,sans-serif;letter-spacing:12px;padding:10px 10px 10px 22px;border-radius:14px;border:2px solid #fff;background:rgba(255,255,255,.1);color:#fff}
-#pw:focus-visible,#go:focus-visible,.g:focus-visible,.bl:focus-visible,#bird:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-#go{display:block;margin:16px auto 0;border:0;border-radius:99px;background:#fff;color:#5a2352;font:600 17px Nunito,sans-serif;padding:11px 34px;cursor:pointer}
-#err{min-height:24px;margin-top:10px;color:#ffd0df}
-.shake{animation:sh .45s}@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
-.fx{position:fixed;z-index:50;pointer-events:none;font-size:24px;animation:fx 1.3s ease-out forwards}
-@keyframes fx{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(.6);opacity:0}}
-section.box{margin-top:44px;text-align:center}
-section.box h2{font:600 34px/1.15 "Cormorant Garamond",Georgia,serif;margin:0 0 6px}
-section.box>p{color:var(--soft);margin:0 0 18px}
-.msg{min-height:56px;margin-top:14px;font:italic 500 22px/1.4 "Cormorant Garamond",Georgia,serif;color:var(--rose)}
-.gifts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
-.g{width:74px;height:74px;font-size:42px;border:1px solid var(--line);border-radius:20px;background:var(--card);cursor:pointer;transition:transform .2s}
-.g:active{transform:scale(.88)}.g.open{animation:pop .6s}
-@keyframes pop{40%{transform:scale(1.3) rotate(-10deg)}}
-#bird{font-size:84px;background:none;border:0;cursor:pointer;line-height:1}
-#bird.hop{animation:hop .5s}@keyframes hop{40%{transform:translateY(-26px) rotate(-8deg)}}
-.sky{position:relative;height:300px;border-radius:24px;background:linear-gradient(#ffd9e8,#fff4f8);border:1px solid var(--line);overflow:hidden}
-:root[data-theme="dark"] .sky{background:linear-gradient(#4a2a43,#2b1727)}
-.bl{position:absolute;bottom:-70px;font-size:56px;background:none;border:0;cursor:pointer;animation:up linear infinite}
-@keyframes up{to{bottom:310px}}
-.pic{width:170px;height:170px;border-radius:50%;object-fit:cover;object-position:50% 35%;border:4px solid var(--rose);margin-bottom:12px}
-.close{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px 22px;margin-top:40px;text-align:center;box-shadow:0 18px 40px -22px var(--rose)}
-.close p{margin:0 0 14px}
-.letter p{opacity:0;transform:translateY(14px);transition:opacity 1s,transform 1s}.letter p.in{opacity:1;transform:none}
-#hc{touch-action:none;width:300px;max-width:100%;cursor:crosshair}
-.beat{animation:beat 1.3s ease-in-out infinite}@keyframes beat{50%{transform:scale(1.07)}}
-#hk{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;background:radial-gradient(circle,#7a2f6a,#2a0f27);color:#fff}
-#hk.on{display:flex}#hk .hk{font:600 clamp(70px,22vw,120px)/1 "Cormorant Garamond",Georgia,serif}
-#hk h3{font:italic 500 28px/1.3 "Cormorant Garamond",Georgia,serif;margin:14px 0 6px}#hk small{opacity:.7}
+#gate{position:fixed;inset:0;z-index:30;display:grid;place-items:center;text-align:center;padding:20px;background:radial-gradient(circle,#7a2f6a,#2a0f27);color:#fff;transition:.8s}
+#gate.out{opacity:0;transform:scale(1.2);pointer-events:none}
+#gate .face{width:140px;height:140px;border-radius:50%;border:4px solid #fff}
+#pw{width:180px;text-align:center;font-size:26px;letter-spacing:10px;padding:8px;border-radius:10px;border:2px solid #fff;background:rgba(255,255,255,.1);color:#fff}
+#go{margin:15px auto 0;display:block;border:0;border-radius:99px;background:#fff;color:#5a2352;padding:10px 30px;font-weight:600}
+.gifts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:15px}
+.g{width:70px;height:70px;font-size:38px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+.msg{min-height:40px;margin-top:10px;color:var(--rose);font-style:italic;text-align:center}
 </style></head><body class="locked">
-<div id="gate"><div><img class="face" alt="Ma'am Kainaat" src="data:image/jpeg;base64,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
+<div id="gate"><div>
+<img class="face" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face">
+<h2>For My Favourite Teacher</h2>
+<p>Enter code to open 💌</p>
+<input id="pw" placeholder="••••"><button id="go">Open Gift 🎁</button>
+<div id="err" style="min-height:20px;color:#ffd0df;margin-top:8px"></div>
+<p style="font-size:12px;opacity:.7">Hint: 1411</p>
+</div></div>
+
+<header class="hero"><h1>Happy<br>Teachers' Day</h1><p class="to">To Ma'am Kainaat</p><p style="color:var(--soft)">You made us believe we could.</p></header>
+
+<main>
+<div class="letter">
+<p style="font:600 26px Cormorant Garamond,serif;color:var(--rose)">Dear Ma'am Kainaat,</p>
+<p>Thank you for everything you have done.</p>
+<p>Your patience and kindness has always inspired me.</p>
+<p>You taught us not just subjects, but how to be confident.</p>
+<p style="text-align:right;font-style:italic">— Ume Habiba 🌸</p>
+</div>
+<button class="vid" id="openVid"><span class="play"></span><span><b>Tap to watch surprise</b></span></button>
+<div class="gifts">
+<button class="g" data-m="You are the reason I love learning! 📚">📚</button>
+<button class="g" data-m="Thank you for being so patient! 🌷">🌷</button>
+<button class="g" data-m="Best teacher award goes to YOU! 🏆">🏆</button>
+<button class="g" data-m="You deserve all the love! 💖">💖</button>
+</div>
+<div class="msg" id="giftMsg"></div>
+</main>
+
+<div class="modal" id="modal">
+<button class="x" id="closeM">✕</button>
+<div class="player"><div class="bar"><i id="bar"></i></div>
+<div class="slide">Dear Ma'am, this is for you... 🌸</div>
+<div class="slide" style="display:none">Thank you for your love ✨</div>
+<div class="slide" style="display:none">Happy Teachers' Day! — Ume Habiba 💖</div>
+<div class="end" id="end"><div><h3>Happy Teachers' Day</h3><p>Ma'am Kainaat 💖</p><button id="replay" style="border:1px solid #fff;background:none;color:#fff;border-radius:99px;padding:6px 20px">Replay</button></div></div>
+</div></div>
+
+<script>
+const gate=document.getElementById('gate'),pw=document.getElementById('pw'),go=document.getElementById('go');
+function unlock(){gate.classList.add('out');document.body.classList.remove('locked');setTimeout(()=>gate.style.display='none',800)}
+go.onclick=()=>{unlock()};pw.onkeydown=e=>{if(e.key==='Enter')unlock()}
+const hero=document.querySelector('.hero');
+for(let i=0;i<16;i++){let s=document.createElement('span');s.className='petal';s.textContent=['🌸','💖','✨','🌷'][i%4];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(5+Math.random()*5)+'s';hero.appendChild(s)}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})});
+document.querySelectorAll('.letter p').forEach(p=>obs.observe(p));
+document.querySelectorAll('.g').forEach(b=>{b.onclick=()=>{document.getElementById('giftMsg').textContent=b.dataset.m}})
+const modal=document.getElementById('modal'),slides=[...document.querySelectorAll('.slide')],bar=document.getElementById('bar'),end=document.getElementById('end');
+let idx=0,timer;
+document.getElementById('openVid').onclick=()=>{modal.classList.add('on');idx=0;show();timer=setInterval(()=>{idx++;if(idx>=3){clearInterval(timer);end.classList.add('on');bar.style.width='100%'}else show()},2000)}
+function show(){slides.forEach((s,i)=>s.style.display=i==idx?'block':'none');bar.style.width=((idx+1)/3*100)+'%'}
+document.getElementById('closeM').onclick=()=>{modal.classList.remove('on');clearInterval(timer);end.classList.remove('on');bar.style.width='0%'}
+document.getElementById('replay').onclick=()=>{end.classList.remove('on');idx=0;show();timer=setInterval(()=>{idx++;if(idx>=3){clearInterval(timer);end.classList.add('on')}else show()},2000)}
+</script>
+</body></html>
